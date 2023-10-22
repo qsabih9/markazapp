@@ -1,9 +1,10 @@
 # Markaz APP ETL tasks
 The README is describing the steps/approaches taken towards the Data Engineering task
 
-## Task 1 - using Apache Airflow
+# Task 1 - using Apache Airflow
 
 Below screenshot is the architecture followed in moving the data from csv file all the way to Snowflake
+
 ![Screenshot](images/datapipeline_airflow.png)
 
 ### Tech stack used:
@@ -15,6 +16,7 @@ Below screenshot is the architecture followed in moving the data from csv file a
 
 - s3_file_upload - DAG.py -> Airflow DAG that moves data from local storage to aws s3 bucket
 - transaction_load - DAG.py -> Airflow DAG that ingests data from s3 bucket, applies transformations on the datasets, and loads the resultant dataset to Snowflake table
+- schema.sql -> Complete schema file for snowflake environment
 
 Following steps are included in transaction_load DAG:
 
@@ -34,4 +36,16 @@ Following steps are included in transaction_load DAG:
 - truncate_reporting_table : This truncates rolling_avg_rating_per_product table in snowflake
 - rolling_avg_rating_per_product_insert : This inserts avg_ratings_per_product dataset into rolling_avg_rating_per_product table in snowflake
 - cleanup : This deletes all the temporary tables created along the way
+
+### Analytics inside Snowflake
+Following views are created inside snowflake to further analyse the data:
+- satisfactory_score : This creates satisfactory_score of the products, and lists down top 3 products with highest score and with minimum orders placed being 4
+- most_popular_categories : This finds top 3 most popular product categories sold
+
+# Task 2 - using cloud platform - Azure
+
+Below screenshot is the architecture followed in moving the data from source database (snowflake in this case) all the data to Azure Synapse Analytics Cloud datawarehouse platform
+
+![Screenshot](images/datapipeline_azure.png)
+
   
