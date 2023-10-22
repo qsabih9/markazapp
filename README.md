@@ -48,4 +48,31 @@ Below screenshot is the architecture followed in moving the data from source dat
 
 ![Screenshot](images/datapipeline_azure.png)
 
+## Azure services used in this
+- Resource Group : For grouping all the services into one group
+- Storage Account : For storing of raw and transformed data
+- DataFactory : For ingesting data from Snowflake and loading into Storage location
+- Databricks : For transforming the data using pyspark
+- Synapse Analytics : For storing the data in cloud datawarehouse for business users to query the data from
+
+### Files in this task 
+- MarkazApp ETL - Databricks.ipynb
+- sql_on_blob_storage.sql
+
+Transformations done in Databricks:
+- Filter data for a specific product_id, e.g., product_id 1 with more than 2 order quantity
+- Adding PRODUCT_CATEGORY column based on PRODUCT_ID value
+- Convert purchase_date to date datatype
+- Calculate the total revenue for each product category
+- Count the number of purchases for each product category
+- Statistics on RATING column
+- Calculate the average review ratings for each product
+
+## SQL File has method to connect to your transformed files in blob storage account
+
+# Architecture Explaination
+
+- Data from snowflake is ingested using Datafactory and stored in a raw bucket in storage account
+- Using Databricks the raw file is read, transformations are applied using pyspark, datasets are created and all those are written back into transformed bucket on storage account
+- Synapse Analytics then reads that data and builds tables and views if need be or query the data using standard SQL
   
