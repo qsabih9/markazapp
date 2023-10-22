@@ -1,5 +1,5 @@
 # markazapp
 Markaz App Assessment
 
-!(/datapipeline_airflow.png)
-![Alt text](datapipeline_airflow.jpg?raw=true "Title")
+!(/images/datapipeline_airflow.png)
+![Alt text](/images/datapipeline_airflow.jpg?raw=true "Title")
