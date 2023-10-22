@@ -41,6 +41,7 @@ Following steps are included in transaction_load DAG:
 Following views are created inside snowflake to further analyse the data:
 - satisfactory_score : This creates satisfactory_score of the products, and lists down top 3 products with highest score and with minimum orders placed being 4
 - most_popular_categories : This finds top 3 most popular product categories sold
+- most_profitable_week : This finds most profitable week in the given dataset
 
 # Task 2 - using cloud platform - Azure
 
